@@ -7,7 +7,7 @@ class MedelTests(TestCase):
     def test_create_user_with_email_successful(self):
         """Test crating a new user with an email is successful"""
         email = 'test@example.com'
-        password = '1234'
+        password = 'testpasss'
         user = get_user_model().objects.create_user(
             email=email,
             password=password
@@ -18,14 +18,14 @@ class MedelTests(TestCase):
     def test_new_user_email_normalized(self):
         """Test the email for a new user is normalized"""
         email = 'test@EXAMPLE.COM'
-        user = get_user_model().objects.create_user(email, 'test123')
+        user = get_user_model().objects.create_user(email, 'testpass')
 
         self.assertEqual(user.email, email.lower())
 
     def test_new_user_invalid_email(self):
         """Test creating with no email raises error"""
         with self.assertRaises(ValueError):
-            get_user_model().objects.create_user(None, 'test123')
+            get_user_model().objects.create_user(None, 'testpass')
 
     def test_create_new_superuser(self):
         """Test creating a new superuser"""
